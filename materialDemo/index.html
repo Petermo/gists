@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
+    <link rel="stylesheet" href="bower_components/angular-material/themes/blue-theme.css">
+    <link rel="stylesheet" href="bower_components/angular-material/themes/blue-grey-theme.css">
+</head>
+<body ng-app="demo" layout="column" layout-fill>
+
+<div ng-controller="AppCtrl" layout="column" layout-fill>
+
+    <md-toolbar md-theme="blue-grey" md-scroll-shrink>
+        <div class="md-toolbar-tools" layout="row">
+            <span ng-click="toggleLeft()">Menu?!</span>
+            <h1 flex>Poolmanager 4 rocks!</h1>
+            <h3>And to the right</h3>
+        </div>
+    </md-toolbar>
+    <md-content>
+    <section layout="row">
+        <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$media('lg')">
+
+            <md-toolbar class="md-theme-indigo">
+                <h1 class="md-toolbar-tools">Sidenav Left</h1>
+            </md-toolbar>
+            And some contents in the menu
+        </md-sidenav>
+
+        <md-content>
+
+            <section ng-repeat="n in list() track by $index">
+                <md-list layout="row">
+                    <md-item ng-repeat="item in todos | offset:$index*3 | limitTo:3" flex="{{item.width}}">
+                        <md-item-content>
+                            <div class="md-tile-left">
+                                {{item.number}}
+                            </div>
+                            <div class="md-tile-content">
+                                <h3>{{item.what}}</h3>
+                                <h4>{{item.who}}</h4>
+                                <p>
+                                    {{item.notes}}
+                                </p>
+                            </div>
+                        </md-item-content>
+                        <md-divider inset></md-divider>
+                    </md-item>
+
+                </md-list>
+            </section>
+
+        </md-content>
+    </section>
+    </md-content>
+</div>
+
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-aria/angular-aria.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/hammerjs/hammer.js"></script>
+<script src="bower_components/angular-material/angular-material.js"></script>
+<script src="app.js">
+
+</script>
+
+</body>
+</html>
