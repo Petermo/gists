@@ -21,6 +21,7 @@ app.controller('AppCtrl', function($scope,$mdSidenav) {
             notes: "I'll be in your neighborhood doing errands."
         });
     }
+	$scope.menuList = [];
 
     $scope.toggleLeft = function() {
         $mdSidenav('left').toggle();
@@ -30,6 +31,16 @@ app.controller('AppCtrl', function($scope,$mdSidenav) {
         return Array($scope.todos.length);
     }
 
+	$scope.moveCardToMenu = function(cardNumber) {
+		console.log(event);
+		$scope.menuList.push($scope.todos.filter(function(elem) { return elem.number == cardNumber; })[0]);
+		$scope.todos = $scope.todos.filter(function(elem) { return elem.number != cardNumber; });
+	}
+	$scope.moveCardToMain = function(cardNumber) {
+		console.log(event);
+		$scope.todos.push($scope.menuList.filter(function(elem) { return elem.number == cardNumber; })[0]);
+		$scope.menuList = $scope.menuList.filter(function(elem) { return elem.number != cardNumber; });
+	}
 });
 
 app.filter('offset', function() {

@@ -23,25 +23,36 @@
             <md-toolbar class="md-theme-indigo">
                 <h1 class="md-toolbar-tools">Sidenav Left</h1>
             </md-toolbar>
+			<p>
             And some contents in the menu
+			</p>
+			<p>
+			<div ng-repeat="card in menuList">
+			<span ng-click="moveCardToMain(card.number)">
+				[{{card.number}}] {{card.what}}
+				</span>
+			</div>
+			</p>
         </md-sidenav>
 
         <md-content>
 
             <section ng-repeat="n in list() track by $index">
-                <md-list layout="row">
+                <md-list layout="row" layout-fill>
                     <md-item ng-repeat="item in todos | offset:$index*3 | limitTo:3" flex="{{item.width}}">
                         <md-item-content>
-                            <div class="md-tile-left">
-                                {{item.number}}
-                            </div>
-                            <div class="md-tile-content">
-                                <h3>{{item.what}}</h3>
-                                <h4>{{item.who}}</h4>
-                                <p>
-                                    {{item.notes}}
-                                </p>
-                            </div>
+							<md-card ng-click="moveCardToMenu(item.number)">
+								<div>
+									{{item.number}}
+								</div>
+								<div class="md-tile-content">
+									<h3>{{item.what}}</h3>
+									<h4>{{item.who}}</h4>
+									<p>
+										{{item.notes}}
+									</p>
+								</div>
+							</md-card>
                         </md-item-content>
                         <md-divider inset></md-divider>
                     </md-item>
